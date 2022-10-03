@@ -36,9 +36,16 @@ function sumarIva(precio){
 let precioConIva = sumarIva(acumulador);
 console.log("El precio final con iva es: "+precioConIva);
 
+
+function descontar(precio){
+    return precio * 0.90;
+}
+let precioDescuento = descontar(precioConIva);
+
+
 let metodoPago = prompt("Que metodo de pago quiere utilizar?\n1-Efectivo\n2-Tarjeta de credito\nAbonando en efectivo tiene un 10% de descuento.");
 if(metodoPago == "1"){
-    precioFinal = precioConIva * 0.90;
+    precioFinal = precioDescuento;
 }else{
     precioFinal = precioConIva;
 }
