@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-family: Montserrat , sans-serif;
+    font-style: normal;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%; 
+}
+.enlace {
+    margin-left: 2.5rem;
+    text-decoration: none; 
+}
+.enlace h1 {
+    margin-bottom: 0; 
+}
+.header__h1{
+    width: 19vw;
+    max-width: 180px;
+    font-size: 2.2em;
+    font-weight: 500;
+    color: #252525;
+    font-family: "Lora", serif; 
+}
+
+
+nav #check {
+    display: none; 
+}
+nav .checkbtn {
+    font-size: 3em;
+    color: aliceblue;
+    float: right;
+    line-height: 80px;
+    margin-right: 4rem;
+    cursor: pointer;
+    display: none;
+}
+nav .checkbtn .line {
+    width: 30px;
+    height: 5px;
+    background-color: aliceblue;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all .3s ease-in-out; 
+}
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+    margin-bottom: 0; 
+}
+nav ul li {
+    display: inline-block;
+    margin: 0 5px; 
+}
+nav ul li a {
+    color: aliceblue;
+    font-size: 1.6em;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    list-style: none; 
+}
+nav ul li a:hover {
+    background: #9c9c9c;
+    transition: .5s;
+    color: aliceblue; 
+}
+
+.index__nav {
+    box-shadow: 3px 0px 8px 0px rgba(0, 0, 0, 0.3);
+}
+.index__a {
+    color: #252525; 
+}
+.nav__oscuro {
+    background: #29292e; 
+}
+
+@media screen and (max-width: 1120px) {
+    nav ul li a {
+    font-size: 1.4em; } }
+
+@media screen and (max-width: 860px) {
+    .header__h1{
+        color: aliceblue;
+    }
+    nav {
+        background: #29292e;
+        border-bottom: 2px solid #616161; 
+    }
+    .enlace {
+        padding-left: 2rem; 
+    }
+    .header__h1 {
+        font-size: 1.6em; 
+    }
+    nav #check:checked ~ ul {
+        left: 0; 
+    }
+    nav .checkbtn {
+        display: block; 
+    }
+    nav :checked ~ .checkbtn .line:nth-child(1) {
+        transform: translateY(10px) rotate(225deg); }
+    nav :checked ~ .checkbtn .line:nth-child(3) {
+        transform: translateY(-10px) rotate(-225deg); }
+    nav :checked ~ .checkbtn .line:nth-child(2) {
+        opacity: 0; }
+    nav .nav__responsive {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        background: #29292e;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s; 
+    }
+    nav ul li {
+        display: block;
+        margin: 2rem; 
+    }
+    nav ul li a:hover {
+        background: none;
+        color: coral; 
+    }
+    nav ul li .index__a {
+        color: aliceblue; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .enlace {
+        margin-left: 0;
+    }
+    .header__h1{
+        width: 100px; 
+    }
+    nav .checkbtn {
+    margin-right: 2rem; 
+    } 
+}
+
+@media screen and (max-width: 425px) {
+    .enlace {
+        padding-left: 0;
+        margin-left: 1.5rem;
+    }
+    nav .checkbtn {
+        margin-right: 1.5rem; 
+    } 
+}
