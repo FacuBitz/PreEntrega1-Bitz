@@ -1,52 +1,92 @@
-let producto;
-let acumulador = 0;
-let precio
+const productos = [
+    { nombre: "shampoo", precio: 1500},
+    { nombre: "cera", precio: 800},
+    { nombre: "guante", precio: 500},
+];
 
+function buscarPrecio(productos){
+    return productos.nombre == producto;
+}
+let carrito = []
 
-do{
-    producto = prompt("*****CARRITO DE COMPRAS*****\nIngrese el numero del producto que desea comprar\nLos productos disponibles son:\n1-shampoo\n2-cera\n3-guante\nEscriba 4 para salir.");
-        if(producto!="4"){
-            switch (producto){
-                case "1":
-                    precio = 1500;
-                    console.log("shampoo = $1500");
-                    break;
-                case "2":
-                    precio = 800;
-                    console.log("cera = $800");
-                    break;
-                case "3":
-                    precio = 500;
-                    console.log("guante = $500");
-                    break;
-                default:
-                    console.log("Producto sin stock");
-                    break;
+let seleccion = prompt("*****CARRITO DE COMPRAS*****\nBienvenido! Desea comprar algun producto?\nPresione 'si' para ver el catalogo o 'no' para salir.").toLowerCase();
+
+while (seleccion != "si" && seleccion != "no"){
+    alert("Por favor ingrese si o no para continuar")
+    seleccion = prompt("*****CARRITO DE COMPRAS*****\nBienvenido! Desea comprar algun producto?\nPresione 'si' para ver el catalogo o 'no' para salir.").toLowerCase();
+}
+
+if (seleccion == "si"){
+    alert("A continuacion nuestro catalogo...")
+    let catalogo = productos.map((producto) => producto.nombre+" "+"$"+producto.precio);
+    alert(catalogo.join("\n"))
+    do{
+        producto = prompt("Agregue el nombre del producto que quiere comprar\nPresione 1 para salir").toLowerCase();
+            if(producto!="1"){
+                switch (producto){
+                    case "shampoo":
+                        precio = productos.find(buscarPrecio).precio;
+                        console.log("shampoo = $"+precio);
+                        break;
+                    case "cera":
+                        precio = productos.find(buscarPrecio).precio;
+                        console.log("cera = $"+precio);
+                        break;
+                    case "guante":
+                        precio = productos.find(buscarPrecio).precio;
+                        console.log("guante = $"+precio);
+                        break;
+                    default:
+                        console.log("Producto sin stock");
+                        precio = 0;
+                        break;
+                }
+                if(precio != 0){
+                    let unidades = parseInt(prompt("Ingrese cantidad de unidades"));
+                    if(isNaN(unidades)){
+                        alert("Ingrese un numero valido!")
+                        console.log("Cantidad no definida")
+                    }else{
+                        carrito.push({producto, unidades, precio});
+                        console.log(carrito);
+                    }
+                }else{
+                    alert("Producto no encontrado")
+                }
             }
-            acumulador = acumulador + precio;
-            precio = 0;
-        }
-}while(producto!="4")
-console.log("Precio total de los productos: "+acumulador);
+    } while (producto!="1")
+    carrito.forEach((carritoFinal) => {
+        console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.unidades},
+        total a pagar por producto ${carritoFinal.unidades * carritoFinal.precio}`)
+    })
 
+    const total = carrito.reduce((acc, el) => acc + el.precio * el.unidades, 0);
+    console.log("El total a pagar por su compra es: "+total);
 
-function sumarIva(precio){
-    return precio * 1.21;
+    function sumarIva(precio){
+        return precio * 1.21;
+    }
+    let precioConIva = sumarIva(total);
+    console.log("El precio final con iva es: $"+precioConIva);
+    
+    function descontar(precio){
+        return precio * 0.90;
+    }
+    let precioDescuento = descontar(precioConIva);
+    
+    let metodoPago = prompt("Que metodo de pago quiere utilizar?\n1-Efectivo\n2-Tarjeta de credito\nAbonando en efectivo tiene un 10% de descuento."); 
+    while (metodoPago != 1 && metodoPago != 2){
+        alert("Por favor ingrese 1 o 2 para continuar")
+        metodoPago = prompt("Que metodo de pago quiere utilizar?\n1-Efectivo\n2-Tarjeta de credito\nAbonando en efectivo tiene un 10% de descuento.");
+    }
+    if(metodoPago == "1"){
+        precioFinal = precioDescuento;
+    }else{
+        precioFinal = precioConIva;
+    }
+    console.log("El total a abonar es de $ "+Math.round(precioFinal));
+    alert("Gracias por su compra!");
+
+} else if (seleccion == "no"){
+    alert("Gracias por venir, vuelva pronto!")
 }
-let precioConIva = sumarIva(acumulador);
-console.log("El precio final con iva es: "+precioConIva);
-
-
-function descontar(precio){
-    return precio * 0.90;
-}
-let precioDescuento = descontar(precioConIva);
-
-
-let metodoPago = prompt("Que metodo de pago quiere utilizar?\n1-Efectivo\n2-Tarjeta de credito\nAbonando en efectivo tiene un 10% de descuento.");
-if(metodoPago == "1"){
-    precioFinal = precioDescuento;
-}else{
-    precioFinal = precioConIva;
-}
-console.log("El total a abonar es de $ "+precioFinal);
