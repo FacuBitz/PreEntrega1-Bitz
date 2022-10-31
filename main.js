@@ -11,9 +11,9 @@ function recuperarTabla(){
     for(const producto of carrito){
         document.getElementById("tablabody").innerHTML += `
         <tr>
-            <td>${producto.id}</td>
-            <td>${producto.nombre}</td>
-            <td>${producto.precio}</td>
+            <td><img src="${producto.foto}" width="40px" height="40px" alt="..."></td>
+            <td class="align-middle">${producto.nombre}</td>
+            <td class="align-middle">${producto.precio}</td>
         </tr>
     `;
     }
@@ -50,9 +50,9 @@ function agregarAlCarrito(productoComprado){
     alert("Producto: "+productoComprado.nombre+" agregado al carrito!");
     document.getElementById("tablabody").innerHTML += `
         <tr>
-            <td>${productoComprado.id}</td>
-            <td>${productoComprado.nombre}</td>
-            <td>${productoComprado.precio}</td>
+            <td><img src="${productoComprado.foto}" width="40px" height="40px" alt="..."></td>
+            <td class="align-middle">${productoComprado.nombre}</td>
+            <td class="align-middle">${productoComprado.precio}</td>
         </tr>
     `;
     totalCarrito = carrito.reduce((acumulador,producto) => acumulador + producto.precio, 0);
