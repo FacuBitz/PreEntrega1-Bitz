@@ -1,3 +1,4 @@
+/* Normalizadores */
 @import url('https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Poppins&display=swap');
 *{
     margin: 0;
@@ -17,7 +18,11 @@ nav {
     align-items: center;
     height: 80px;
     width: 100%; 
+    box-shadow: 3px 0px 8px 0px rgba(0, 0, 0, 0.3);
 }
+/* Fin normalizadores */
+
+/* Nav */
 .enlace {
     margin-left: 2.5rem;
     text-decoration: none; 
@@ -34,7 +39,6 @@ nav {
     font-family: "Lora", serif; 
 }
 
-
 nav #check {
     display: none; 
 }
@@ -50,7 +54,7 @@ nav .checkbtn {
 nav .checkbtn .line {
     width: 30px;
     height: 5px;
-    background-color: aliceblue;
+    background-color: #5a5a5a;
     margin: 5px;
     border-radius: 3px;
     transition: all .3s ease-in-out; 
@@ -66,7 +70,7 @@ nav ul li {
     margin: 0 5px; 
 }
 nav ul li a {
-    color: aliceblue;
+    color: #252525; ;
     font-size: 1.6em;
     padding: 7px 13px;
     border-radius: 3px;
@@ -79,29 +83,25 @@ nav ul li a:hover {
     transition: .5s;
     color: aliceblue; 
 }
+/* Fin nav */
 
-.index__nav {
-    box-shadow: 3px 0px 8px 0px rgba(0, 0, 0, 0.3);
+/* Index */
+.productos{
+    max-width: 25rem;
+    border-radius: 10px; 
+    border-width: 2px;
 }
-.index__a {
-    color: #252525; 
+.row{
+    gap: 30px;
+    justify-content: center;
 }
-.nav__oscuro {
-    background: #29292e; 
-}
+/* Fin index */
 
 @media screen and (max-width: 1120px) {
     nav ul li a {
     font-size: 1.4em; } }
 
 @media screen and (max-width: 860px) {
-    .header__h1{
-        color: aliceblue;
-    }
-    nav {
-        background: #29292e;
-        border-bottom: 2px solid #616161; 
-    }
     .enlace {
         padding-left: 2rem; 
     }
@@ -125,11 +125,13 @@ nav ul li a:hover {
         flex-direction: column;
         position: absolute;
         width: 100%;
-        background: #29292e;
+        background: rgb(255, 255, 255);
         top: 80px;
-        left: -100%;
+        left: -110%;
         text-align: center;
         transition: all .5s; 
+        z-index: 1;
+        box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 15%);
     }
     nav ul li {
         display: block;
@@ -138,9 +140,6 @@ nav ul li a:hover {
     nav ul li a:hover {
         background: none;
         color: coral; 
-    }
-    nav ul li .index__a {
-        color: aliceblue; 
     }
 }
 
