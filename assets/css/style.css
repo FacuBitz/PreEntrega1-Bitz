@@ -95,6 +95,14 @@ nav ul li a:hover {
     gap: 30px;
     justify-content: center;
 }
+
+.sumar {
+    cursor: pointer;
+    transform: translate(-350%, 0);
+}
+.restar {
+    cursor: pointer;
+}
 /* Fin index */
 
 @media screen and (max-width: 1120px) {
