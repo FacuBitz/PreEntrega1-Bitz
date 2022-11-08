@@ -4,6 +4,7 @@ let contenedor = document.getElementById("misProd");
 let infoTotal = document.getElementById("total");
 let botonFinalizar = document.getElementById("finalizar");
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// si el length del carrito es distinto de 0 es decir que quedo algun producto guardado en el local llama a la funcion para que imprima la tabla con esos productos
 if(carrito.length != 0){
     console.log ("Recuperando carrito, no ha finalizado su compra!")
     recuperarTabla();
@@ -24,8 +25,9 @@ function recuperarTabla(){
         </tr>
     `;
     }
-    sumarr();
-    restarr();
+    habilitarBtn();
+    sumarCantidad();
+    restarCantidad();
     totalAPagar();
     eliminar();
 }
@@ -52,11 +54,12 @@ function renderizarProd(){
 
 renderizarProd();
 
+// actualiza el local storage
+function guardarLocal(){
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
-// recorre el carrito para detectar si esta repetido, si encuentra un id repetido crea un nuevo array,
-// verifica denuevo el id repetido e incrementa su cantidad, 
-// sin el .map cuando reinicio la pagina e intento agregar un producto repetido
-// vuelve a tomar las cantidades del products.js 
+// recorre el carrito para detectar si esta repetido, si encuentra un id repetido crea un nuevo array verificando el id e incrementa su cantidad, sin el .map si reinicio la pagina e intento agregar un producto repetido vuelve a tomar las cantidades del productos.js. Si no esta repetido mete el producto en el carrito y lo dibuja en el DOM
 function agregarAlCarrito(producto){
     const repetido = carrito.some((el) => el.id === producto.id);
     if (repetido) {
@@ -84,17 +87,18 @@ function agregarAlCarrito(producto){
             <td class="align-middle"><button type="button" class="btn" id="eliminar${producto.id}">x</button></td>
         </tr>
     `;
-    sumarr();
-    restarr();
+    habilitarBtn();
+    sumarCantidad();
+    restarCantidad();
     eliminar();
     }
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    
+    guardarLocal();
     totalAPagar();
 }
 
-function restarr(){
+// disminuye la cantidad del producto tomando su id y actualiza el valor en el DOM
+function restarCantidad(){
     for (const producto of carrito){
         let restar = document.getElementById(`restar${producto.id}`);
         restar.addEventListener("click", () => {
@@ -106,13 +110,14 @@ function restarr(){
                 <td class="align-middle" id="cantidad${producto.id}">${producto.cantidad}</td>
             `;
 
-            localStorage.setItem("carrito", JSON.stringify(carrito));
+            guardarLocal();
             totalAPagar();
         });
     }
 }
 
-function sumarr(){
+// aumenta la cantidad del producto tomando su id y actualiza el valor en el DOM
+function sumarCantidad(){
     for (const producto of carrito){
         let sumar = document.getElementById(`sumar${producto.id}`);
         sumar.addEventListener("click", () => {
@@ -122,41 +127,59 @@ function sumarr(){
                 <td class="align-middle" id="cantidad${producto.id}">${producto.cantidad}</td>
             `;
 
-            localStorage.setItem("carrito", JSON.stringify(carrito));
+            guardarLocal();
             totalAPagar();
         });
     }
 }
 
+// calcula el precio segun la cantidad del producto y actualiza el total en el DOM
 function totalAPagar(){
     totalCarrito = carrito.reduce((acumulador,producto)=> acumulador + producto.precio * producto.cantidad,0);
     infoTotal.innerText="Total a pagar: $"+totalCarrito;
 }
 
 function eliminar(){
-        for (const producto of carrito){
-            productoEliminado = document.getElementById(`eliminar${producto.id}`).addEventListener("click", function(){
-                eliminarDelCarrito(producto);
-                document.getElementById(`id${producto.id}`).remove();
-                totalAPagar();
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-            });
+    for (const producto of carrito){
+        productoEliminado = document.getElementById(`eliminar${producto.id}`).addEventListener("click", function(){
+            eliminarDelCarrito(producto);
+            document.getElementById(`id${producto.id}`).remove();
+            totalAPagar();
+            guardarLocal();
+            habilitarBtn();
+        });
     }
 }
 
+// obtiene el index del producto y con el .splice lo elimina del carrito
 function eliminarDelCarrito(productoEliminado){
     let eliminado = carrito.indexOf(productoEliminado);
     carrito.splice(eliminado, 1);
     console.table(carrito);
 }
 
-botonFinalizar.onclick = () => {
-    // if (carrito.lenght != 0){
-        carrito = [];
-        document.getElementById("tablabody").innerHTML="";
-        let infoTotal = document.getElementById("total");
-        infoTotal.innerText="Total a pagar: $";
+// activa el btn si hay productos en el carrito, llamo a esta funcion cada vez que agrego un producto o lo elimino para que verifique si el btn debe estar activado o no
+function habilitarBtn(){
+    if(carrito.length != 0){
+        finalizar.classList.remove("btn-secondary");
+        finalizar.classList.add("btn-success");
+        botonFinalizar.removeAttribute("disabled");
+    } else {
+        finalizar.classList.remove("btn-success");
+        finalizar.classList.add("btn-secondary");
+        botonFinalizar.setAttribute("disabled", "");
+    }
+}
 
-        localStorage.removeItem("carrito");
-    // }
+// el forEach sirve para volver a 1 las cantidades de los productos porque sino cuando termino la compra y vuelvo a agregar un producto que ya tenia se agrega con las cantidades anteriores por mas de que se este borrando el carrito. Luego vacia el carrito, lo borra del DOM y del local
+botonFinalizar.onclick = () => {
+    carrito.forEach(producto => {
+        producto.cantidad = 1;
+    })
+    carrito = [];
+    document.getElementById("tablabody").innerHTML="";
+    totalAPagar();
+    habilitarBtn();
+
+    localStorage.removeItem("carrito");
     }
