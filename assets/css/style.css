@@ -38,6 +38,10 @@ nav {
     color: #252525;
     font-family: "Lora", serif; 
 }
+.index__div{
+    display: flex;
+    align-items: center;
+}
 
 nav #check {
     display: none; 
@@ -48,6 +52,7 @@ nav .checkbtn {
     float: right;
     line-height: 80px;
     margin-right: 4rem;
+    margin-left: 1.5rem;
     cursor: pointer;
     display: none;
 }
@@ -102,6 +107,36 @@ nav ul li a:hover {
 }
 .restar {
     cursor: pointer;
+}
+
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.finalizar-compra{
+    display: flex;
+    flex-direction: column;
+}
+
+.total{
+    display: flex;
+    justify-content: center;
+}
+
+.enviar-pedido{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row-contacto{
+    gap: 0;
+    justify-content: flex-start;
+}
+
+.badge{
+    font-size: .9em;
 }
 /* Fin index */
 
