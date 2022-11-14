@@ -19,6 +19,9 @@ nav {
     height: 80px;
     width: 100%; 
     box-shadow: 3px 0px 8px 0px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    background-color: white;
+    z-index: 99;
 }
 /* Fin normalizadores */
 
@@ -57,8 +60,8 @@ nav .checkbtn {
     display: none;
 }
 nav .checkbtn .line {
-    width: 30px;
-    height: 5px;
+    width: 25px;
+    height: 3px;
     background-color: #5a5a5a;
     margin: 5px;
     border-radius: 3px;
@@ -93,8 +96,14 @@ nav ul li a:hover {
 /* Index */
 .productos{
     max-width: 25rem;
+    width: 21vw;
     border-radius: 10px; 
-    border-width: 2px;
+    box-shadow: 4px 3px 5px 0px rgb(12 12 12 / 11%);
+    cursor: pointer;
+    transition: all .2s;
+}
+.productos:hover{
+    transform: scale(1.05, 1.05);
 }
 .row{
     gap: 30px;
@@ -138,13 +147,61 @@ nav ul li a:hover {
 .badge{
     font-size: .9em;
 }
+
+.section__index{
+    background-image: url(../img/honda.jpg) ;
+    height: auto;
+    width: 100%;
+    background-position: right;
+    background-size: cover;
+}
+.div__index{
+    gap: 10px;
+    height: 100vh;
+    padding-top: 80px;
+}
+.titulo__index{
+    max-width: 800px;
+}
+.subtitulo__index{
+    font-size: 2em;
+    max-width: 400px;
+}
+.titulo__productos{
+    display: flex;
+    justify-content: center;
+    font-size: 3em;
+    margin: 5rem 0 3rem 0;
+}
+
+
+
+
+
 /* Fin index */
+@media screen and (max-width: 1300px) {
+    .section__index{
+        background-position: center;
+    }
+    .display-3{
+        font-size: 3rem;
+    }
+}
 
 @media screen and (max-width: 1120px) {
+    .card-title{
+        font-size: 1.6em;
+    }
     nav ul li a {
     font-size: 1.4em; } }
 
 @media screen and (max-width: 860px) {
+    .card-title{
+        font-size: 1.4em;
+    }
+    .productos{
+        width: 35vw;
+    }
     .enlace {
         padding-left: 2rem; 
     }
@@ -158,9 +215,9 @@ nav ul li a:hover {
         display: block; 
     }
     nav :checked ~ .checkbtn .line:nth-child(1) {
-        transform: translateY(10px) rotate(225deg); }
+        transform: translateY(9px) rotate(225deg); }
     nav :checked ~ .checkbtn .line:nth-child(3) {
-        transform: translateY(-10px) rotate(-225deg); }
+        transform: translateY(-7px) rotate(-225deg); }
     nav :checked ~ .checkbtn .line:nth-child(2) {
         opacity: 0; }
     nav .nav__responsive {
@@ -173,7 +230,6 @@ nav ul li a:hover {
         left: -110%;
         text-align: center;
         transition: all .5s; 
-        z-index: 1;
         box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 15%);
     }
     nav ul li {
@@ -187,6 +243,15 @@ nav ul li a:hover {
 }
 
 @media screen and (max-width: 600px) {
+    .titulo__productos{
+        font-size: 2.4em;
+    }
+    .subtitulo__index{
+        font-size: 1.6em;
+    }
+    .display-3{
+        font-size: 2.4rem;
+    }
     .enlace {
         margin-left: 0;
     }
@@ -199,6 +264,15 @@ nav ul li a:hover {
 }
 
 @media screen and (max-width: 425px) {
+    .titulo__productos{
+        font-size: 2em;
+    }
+    .productos{
+        width: 25rem;
+    }
+    .display-3{
+        font-size: 1.8rem;
+    }
     .enlace {
         padding-left: 0;
         margin-left: 1.5rem;
