@@ -91,6 +91,9 @@ nav ul li a:hover {
     transition: .5s;
     color: aliceblue; 
 }
+.badge{
+    font-size: .9em;
+}
 /* Fin nav */
 
 /* Index */
@@ -109,46 +112,7 @@ nav ul li a:hover {
     gap: 30px;
     justify-content: center;
 }
-
-.sumar {
-    cursor: pointer;
-    transform: translate(-350%, 0);
-}
-.restar {
-    cursor: pointer;
-}
-
-.offcanvas-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.finalizar-compra{
-    display: flex;
-    flex-direction: column;
-}
-
-.total{
-    display: flex;
-    justify-content: center;
-}
-
-.enviar-pedido{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.row-contacto{
-    gap: 0;
-    justify-content: flex-start;
-}
-
-.badge{
-    font-size: .9em;
-}
-
-.section__index{
+.index__background{
     background-image: url(../img/honda.jpg) ;
     height: auto;
     width: 100%;
@@ -174,13 +138,40 @@ nav ul li a:hover {
     margin: 5rem 0 3rem 0;
 }
 
+/* offcanvas */
+.offcanvas{
+    width: 500px;
+}
+.sumar {
+    cursor: pointer;
+    transform: translate(-350%, 0);
+}
+.restar {
+    cursor: pointer;
+}
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.finalizar__compra{
+    display: flex;
+    flex-direction: column;
+}
+.total{
+    display: flex;
+    justify-content: center;
+}
 
-
-
+/* modal */
+.row-contacto{
+    gap: 0;
+    justify-content: flex-start;
+}
 
 /* Fin index */
 @media screen and (max-width: 1300px) {
-    .section__index{
+    .index__background{
         background-position: center;
     }
     .display-3{
