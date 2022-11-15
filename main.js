@@ -36,7 +36,7 @@ function recuperarTabla(){
 }
 
 function renderizarProdJSON(){
-    const URLJSON = "/productos.json";
+    const URLJSON = "./productos.json";
     fetch(URLJSON)
         .then(respuesta => respuesta.json())
         .then(datos => {
