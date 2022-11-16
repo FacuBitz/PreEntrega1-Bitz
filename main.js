@@ -13,6 +13,7 @@ if(carrito.length != 0){
     console.table(carrito);
 }
 
+// por cada producto que quedo en el carrito lo dibuja en el dom
 function recuperarTabla(){
     for(const producto of carrito){
         document.getElementById("tablabody").innerHTML += `
@@ -192,7 +193,7 @@ function habilitarBtn(){
     }
 }
 
-// si el largo del carrito es distinto a 0 muestra el contador y lo incrementa cada vez que agrego un producto nuevo tomando el largo del mismo
+// si el largo del carrito es distinto a 0 muestra el contador y lo modifica cada vez que agrego o elimino un producto iterando sobre las cantidades de los productos en el carrito
 function contadorCarrito(){
     if(carrito.length != 0){
         contador.classList.remove("visually-hidden");
@@ -206,6 +207,7 @@ function contadorCarrito(){
     }
 }
 
+// envia los datos de la compra, es decir el carrito y como usuario envio los datos del comprador
 function enviarDatos(){
     const URLPOST = "https://jsonplaceholder.typicode.com/posts";
     const nuevaCompra = {
@@ -290,6 +292,7 @@ notasEspeciales.onchange = () => {
 let form = document.getElementById("formulario");
 form.addEventListener("submit", validarForm);
 
+// valida que no se envien campos vacios (el de notas especiales no es obligatorio) y que los que tienen que ser texto no sean numero
 function validarForm(ev){
     if((nombre.value!="")&&(isNaN(nombre.value))&&(apellido.value!="")&&(isNaN(apellido.value))&&
     (numeroCasa.value!="")&&(calle.value!="")&&(isNaN(calle.value))&&
